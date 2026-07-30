@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS Hub - SaaS Product Specification</title>
+  <style>
+    /* Print & screen styles */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background: #f5f7fb;
+      padding: 40px 20px;
+      color: #1e293b;
+    }
+    .document {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: white;
+      padding: 50px 60px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border-radius: 8px;
+    }
+    h1 { font-size: 32px; margin-bottom: 6px; color: #0f172a; }
+    h2 { font-size: 24px; margin: 40px 0 16px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; color: #1e293b; }
+    h3 { font-size: 20px; margin: 28px 0 12px; color: #334155; }
+    h4 { font-size: 18px; margin: 20px 0 8px; color: #475569; }
+    p { line-height: 1.7; margin-bottom: 16px; }
+    ul, ol { padding-left: 24px; margin-bottom: 16px; }
+    li { margin-bottom: 6px; line-height: 1.6; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f1f5f9; font-weight: 600; }
+    .code-block {
+      background: #f8fafc;
+      padding: 16px 20px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      margin: 16px 0;
+      white-space: pre-wrap;
+    }
+    .diagram-box {
+      background: #f1f5f9;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 16px 0;
+      font-family: monospace;
+      font-size: 13px;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+    .page-break { page-break-before: always; margin-top: 40px; border-top: 2px dashed #d1d5db; padding-top: 20px; }
+    .cover {
+      text-align: center;
+      padding: 60px 0 40px;
+      border-bottom: none;
+    }
+    .cover h1 { font-size: 48px; margin-bottom: 10px; }
+    .cover .sub { font-size: 20px; color: #64748b; margin-bottom: 30px; }
+    .cover .meta { font-size: 16px; color: #94a3b8; }
+    .cover .line { width: 100px; height: 3px; background: #3b82f6; margin: 20px auto; }
+    .badge { background: #3b82f6; color: white; padding: 4px 12px; border-radius: 20px; font-size: 14px; display: inline-block; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0; }
+    @media print {
+      body { background: white; padding: 0; }
+      .document { box-shadow: none; border-radius: 0; padding: 40px 50px; }
+      .page-break { border-top: none; padding-top: 0; }
+    }
+    @media (max-width: 600px) {
+      .document { padding: 20px; }
+      .grid-2 { grid-template-columns: 1fr; }
+      table { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+<div class="document">
+
+  <!-- COVER PAGE -->
+  <div class="cover">
+    <h1>CS Hub</h1>
+    <div class="sub">SaaS Product Specification</div>
+    <div class="line"></div>
+    <p style="margin-top:20px; font-size:18px;">Comprehensive academic support platform for Computer Science students</p>
+    <div style="margin-top:30px;">
+      <span class="badge">Version 1.0</span>
+      <span class="badge" style="background:#64748b;">July 2026</span>
+    </div>
+    <div class="meta" style="margin-top:40px;">
+      <p>Prepared for: Development Team</p>
+      <p>Confidential – Internal Use Only</p>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- 1. EXECUTIVE OVERVIEW -->
+  <h2>1. Executive Overview</h2>
+  <p><strong>CS Hub</strong> is a comprehensive SaaS academic management platform designed specifically for Computer Science departments. It bridges the gap between traditional Learning Management Systems (LMS) and the specialized needs of CS students through integrated AI tools, collaborative features, and department-specific workflows.</p>
+  <p><strong>Target Users:</strong> Computer Science Students, Lecturers, Department Administrators (HOD, Coordinators)</p>
+  <p><strong>Deployment:</strong> Cloud-based SaaS with offline capabilities, accessible via web and mobile applications.</p>
+
+  <div class="page-break"></div>
+
+  <!-- 2. DETAILED FEATURES -->
+  <h2>2. Detailed Feature Specifications</h2>
+
+  <h3>MODULE 1: DASHBOARD (HOME)</h3>
+  <h4>1.1 Personalized Welcome Widget</h4>
+  <ul>
+    <li><strong>User-specific greeting</strong> based on time of day (Good Morning/Afternoon/Evening)</li>
+    <li><strong>Student ID Display</strong> with profile picture placeholder</li>
+    <li><strong>Quick Stats Cards:</strong>
+      <ul>
+        <li>Current CGPA (with trend indicator)</li>
+        <li>Upcoming Deadlines (count + nearest deadline)</li>
+        <li>Unread Messages (from lecturers/admin)</li>
+        <li>Pending Assignments</li>
+        <li>Unwatched Recordings</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4>1.2 Calendar Widget</h4>
+  <ul>
+    <li><strong>Monthly/Weekly View</strong> toggle</li>
+    <li><strong>Events Color-Coded:</strong>
+      <ul>
+        <li>🟢 Academic (Classes, Lectures)</li>
+        <li>🔴 Exams/Tests</li>
+        <li>🟡 Assignment Deadlines</li>
+        <li>🔵 Department Events</li>
+        <li>🟣 Meetings (Supervision, Project)</li>
+      </ul>
+    </li>
+    <li><strong>Click to Expand</strong> for event details</li>
+  </ul>
+
+  <h4>1.3 Quick Link Cards</h4>
+  <ul>
+    <li><strong>Dynamic Shortcuts</strong> based on user role:
+      <ul>
+        <li>Student: Courses → Assignments → CBT → AI Assistant</li>
+        <li>Lecturer: Course Management → Create Quiz → Grade Submissions</li>
+        <li>Admin: Announcements → User Management → Reports</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4>1.4 Announcement Feed</h4>
+  <ul>
+    <li><strong>Hierarchical Display:</strong>
+      <ol>
+        <li>Department-wide (HOD/Dean)</li>
+        <li>Course-specific (Lecturers)</li>
+        <li>Personal (Tutor/Advisor)</li>
+      </ol>
+    </li>
+    <li><strong>Read/Unread Status</strong></li>
+    <li><strong>Priority Markers</strong> (Urgent, Important, Informational)</li>
+  </ul>
+
+  <h4>1.5 Motivational Quote &amp; Weather (Optional)</h4>
+  <ul>
+    <li>Rotating tech-related motivational quotes</li>
+    <li>Weather widget with location detection (optional config)</li>
+  </ul>
+
+  <div class="page-break"></div>
+
+  <h3>MODULE 2: ACADEMIC &amp; COURSE MANAGEMENT</h3>
+
+  <h4>2.1 Course Registration / Course Catalog</h4>
+  <p><strong>Features:</strong></p>
+  <ul>
+    <li><strong>Browse Courses</strong> by session/semester</li>
+    <li><strong>Filter/Search:</strong> Department, Course Code, Lecturer, Level, Electives</li>
+    <li><strong>Course Details:</strong> Lecturer info, credits, prerequisites, syllabus summary</li>
+    <li><strong>Registration Workflow:</strong>
+      <ul>
+        <li>Add/Remove courses (within deadline)</li>
+        <li>HOD approval workflow</li>
+        <li>Waitlist functionality for capped courses</li>
+      </ul>
+    </li>
+    <li><strong>Registration History</strong> for past sessions</li>
+  </ul>
+  <p><strong>Data Schema:</strong></p>
+  <div class="code-block">
+Course {
+    courseId: string
+    courseCode: string
+    courseTitle: string
+    creditUnit: number
+    semester: 'First' | 'Second'
+    level: 100 | 200 | 300 | 400 | 500
+    lecturers: [User]
+    prerequisites: [Course]
+    maxCapacity: number
+    enrolledStudents: [User]
+    registrationDeadline: datetime
+}
+  </div>
+
+  <h4>2.2 Timetable Module</h4>
+  <p><strong>Features:</strong></p>
+  <ul>
+    <li><strong>Personalized Weekly View</strong> with:
+      <ul>
+        <li>Course codes</li>
+        <li>Venue/Room number</li>
+        <li>Lecturer name</li>
+        <li>Duration (Start/End time)</li>
+      </ul>
+    </li>
+    <li><strong>Conflict Detection</strong> (overlapping courses)</li>
+    <li><strong>Export Functionality:</strong> Google Calendar (.ics), Outlook, PDF printable</li>
+    <li><strong>Color Coding</strong> per course</li>
+  </ul>
+  <p><strong>Data Schema:</strong></p>
+  <div class="code-block">
+TimeSlot {
+    day: 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri'
+    startTime: time
+    endTime: time
+    course: Course
+    venue: string
+    lecturer: User
+    type: 'Lecture' | 'Lab' | 'Tutorial' | 'Exam'
+}
+  </div>
+
+  <h4>2.3 Course Content Management</h4>
+  <p><strong>For Lecturers:</strong></p>
+  <ul>
+    <li><strong>Upload Content:</strong> Drag &amp; drop interface</li>
+    <li><strong>Content Types:</strong> Lecture Slides (PDF, PPTX, Keynote), Lecture Notes (DOCX, MD, HTML), Video Recordings (MP4, WebM), Supplementary Materials (PDFs, ZIP files)</li>
+    <li><strong>Folder Organization:</strong> Weekly topics or units</li>
+    <li><strong>Bulk Upload Support</strong></li>
+    <li><strong>Version Tracking</strong> (previous versions retained)</li>
+    <li><strong>Access Control:</strong> Published/Draft, visible to students</li>
+  </ul>
+  <p><strong>For Students:</strong></p>
+  <ul>
+    <li><strong>Download Options:</strong> Single file or bulk</li>
+    <li><strong>Mark as Read/Viewed</strong> tracking</li>
+    <li><strong>Offline Sync</strong> for downloaded materials</li>
+    <li><strong>Rate/Provide Feedback</strong> on content quality</li>
+  </ul>
+  <p><strong>Storage Specifications:</strong> File size limit 200MB per file, 10GB per course, auto-optimize images, video transcoding for mobile.</p>
+
+  <h4>2.4 Assignment Submission Portal</h4>
+  <p><strong>For Students:</strong></p>
+  <ul>
+    <li><strong>View Assignments:</strong> List with deadlines, instructions, marking rubric</li>
+    <li><strong>Submit Work:</strong> Multiple file uploads, text entry, link submissions (Google Drive, GitHub)</li>
+    <li><strong>Submission Status:</strong> Submitted, Late, Resubmitted, Graded</li>
+    <li><strong>View Feedback &amp; Grades</strong></li>
+    <li><strong>Submission History</strong></li>
+  </ul>
+  <p><strong>For Lecturers:</strong></p>
+  <ul>
+    <li><strong>Create Assignments:</strong> Title, Description, Instructions, Deadline with timezone, Max file size and type restrictions, Marking rubric (criteria with weights)</li>
+    <li><strong>Assignment Management:</strong> Extend deadlines (individual or batch), Bulk download submissions, Inline commenting, Award grades and feedback</li>
+    <li><strong>Plagiarism Checker (Integration):</strong> Turnitin API, Code plagiarism detection (MOSS integration), Similarity report generation</li>
+  </ul>
+  <p><strong>Assignment Data Model:</strong></p>
+  <div class="code-block">
+Assignment {
+    id: string
+    course: Course
+    title: string
+    description: text
+    instructions: text
+    deadline: datetime
+    maxScore: number
+    rubric: [RubricCriterion]
+    submissions: [Submission]
+    isLateSubmissionAllowed: boolean
+    latePenalty: percentage
+}
+  </div>
+
+  <h4>2.5 Grade Book / Result Checker</h4>
+  <ul>
+    <li><strong>Grade Dashboard:</strong> Overall performance summary, Course-by-course breakdown, Semester GPA, CGPA with trend graph</li>
+    <li><strong>Detailed View:</strong> Assignment grades, Test/Exam scores, Final grade calculation</li>
+    <li><strong>Grade Annotations:</strong> Lecturer comments</li>
+    <li><strong>Export:</strong> PDF report, Excel download</li>
+    <li><strong>Auto-Calculation:</strong> Weighted grading with formula editor</li>
+  </ul>
+  <p><strong>Data Schema:</strong></p>
+  <div class="code-block">
+Grade {
+    student: User
+    course: Course
+    session: Session
+    components: [
+        { type: 'Assignment', score, weight, max }
+        { type: 'Midterm', score, weight, max }
+        { type: 'Exam', score, weight, max }
+    ]
+    finalGrade: number
+    letterGrade: string
+    semesterGPA: number
+    cgpa: number
+}
+  </div>
+
+  <h4>2.6 Exam Schedule &amp; Past Questions Bank</h4>
+  <p><strong>Exam Schedule:</strong> Calendar View, Personalized Filter, Exam Details (Date, Time, Venue, Duration), Proctoring Information, Pre-Exam Checklist.</p>
+  <p><strong>Past Questions Bank:</strong> Browse by Course, Year, Semester; Searchable by keywords, topics; Multiple formats: PDF, Images, Interactive CBT; Filter by Exam Type; Flagging for "Likely Questions"; Download/Print; Lecturer-Approved tag.</p>
+  <p><strong>Data Schema:</strong></p>
+  <div class="code-block">
+PastQuestion {
+    id: string
+    course: Course
+    session: string
+    semester: string
+    examType: 'Midterm' | 'Final' | 'Quiz' | 'CAT'
+    filePath: string
+    isLecturerApproved: boolean
+    uploadedBy: User
+    tags: [string]
+    downloads: number
+}
+  </div>
+
+  <h4>2.7 CGPA Calculator &amp; Progress Tracker</h4>
+  <ul>
+    <li><strong>CGPA Calculator:</strong> Input grades per course, Auto-calculate GPA, Semester-level aggregation, Year-level summary, <strong>What-If Analysis</strong> (simulate grade scenarios), <strong>Target Calculator</strong> (determine required grades)</li>
+    <li><strong>Progress Tracker:</strong> Completion Progress (% of courses completed), Credit Progress (Earned vs Required credits, Recommended next courses), Performance Trends (line graph, radar chart), Academic Alerts (probation warnings, excellent performance recognition), Milestones (level progression, special recognitions).</li>
+  </ul>
+  <p><strong>Algorithm:</strong> CGPA = (Σ(GradePoint × CreditUnits)) / Σ(CreditUnits)</p>
+
+  <div class="page-break"></div>
+
+  <!-- 3. SYSTEM ARCHITECTURE -->
+  <h2>3. System Architecture Diagram</h2>
+  <div class="diagram-box">
+┌─────────────────────────────────────────────────────────────────────┐
+│                          FRONTEND LAYER                            │
+├──────────┬────────────┬────────────┬──────────┬──────────────────┤
+│  React   │  React     │  Mobile    │   PWA    │  Offline Sync    │
+│  Web UI  │  Native    │  (React    │  Support │   Engine         │
+│          │  (Android/  │  Native)   │          │                  │
+│          │   iOS)      │            │          │                  │
+└──────────┴────────────┴────────────┴──────────┴──────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                          API GATEWAY                               │
+│                   (GraphQL + RESTful APIs)                         │
+├──────────────────────────┬─────────────────────────────────────────┤
+│  Authentication/         │  Rate Limiting / Caching               │
+│  Authorization (JWT)     │  CDN Integration                       │
+└──────────────────────────┴─────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                      APPLICATION LAYER                             │
+├──────────┬──────────┬──────────┬──────────┬──────────┬───────────┤
+│  Course  │   Notes  │   CBT    │   Live   │    AI    │  Notifi-  │
+│  Manager │  Manager │  Engine  │  Classes │ Assistant│  cations  │
+├──────────┴──────────┴──────────┴──────────┴──────────┴───────────┤
+│  Grading │ Calendar │  Search  │  File    │  Plagiarism │ Analytics│
+│  Engine  │  Engine  │  Engine  │ Manager  │  Checker   │  Engine  │
+└──────────┴──────────┴──────────┴──────────┴──────────┴───────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                    DATA LAYER / STORAGE                            │
+├──────────┬──────────┬──────────┬──────────┬──────────┬───────────┤
+│PostgreSQL│   S3 /   │Redis    │Elastic- │  MongoDB │  RabbitMQ │
+│ (Main    │ Cloud    │(Caching) │search   │(Analytics)│ (Queues)  │
+│  DB)     │ Storage  │         │(Search) │          │           │
+└──────────┴──────────┴──────────┴──────────┴──────────┴───────────┘
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- 4. ERD -->
+  <h2>4. Entity Relationship Diagram (ERD)</h2>
+  <div class="diagram-box">
+┌─────────────┐      ┌──────────────────┐      ┌─────────────┐
+│    Users    │──────┤   Enrollments    │──────┤   Courses   │
+├─────────────┤      ├──────────────────┤      ├─────────────┤
+│ id (PK)     │      │ id (PK)          │      │ id (PK)     │
+│ full_name   │      │ user_id (FK)     │      │ course_code │
+│ email       │      │ course_id (FK)   │      │ title       │
+│ role        │      │ semester         │      │ credits     │
+│ department  │      │ academic_year    │      │ lecturer_id │
+│ level       │      │ status           │      │ description │
+│ phone       │      │ grade            │      │ prerequisites│
+│ profile_pic │      └──────────────────┘      └─────────────┘
+└─────────────┘               │                        │
+        │                     │                        │
+        │                     ▼                        │
+        │           ┌──────────────────┐              │
+        │           │  Submissions     │              │
+        │           ├──────────────────┤              │
+        │           │ id (PK)          │              │
+        │           │ assignment_id    │──────────────┼──┐
+        │           │ student_id (FK)  │              │  │
+        │           │ file_path        │              │  │
+        │           │ submitted_at     │              │  │
+        │           │ grade            │              │  │
+        │           │ feedback         │              │  │
+        │           │ plagiarism_score │              │  │
+        │           └──────────────────┘              │  │
+        │                                            │  │
+        └────────────────┐                           │  │
+                         │                           │  │
+                    ┌────▼────┐                 ┌────▼──▼────┐
+                    │ Notes   │                 │ Assignments│
+                    ├─────────┤                 ├────────────┤
+                    │ id (PK) │                 │ id (PK)    │
+                    │ course_id│                 │ course_id  │
+                    │ title   │                 │ title      │
+                    │ content │                 │ description│
+                    │ file_path│                │ deadline   │
+                    │ week_no │                 │ max_score  │
+                    │ uploaded_at│              │ rubric     │
+                    └─────────┘                 └────────────┘
+
+┌─────────────┐      ┌──────────────────┐      ┌─────────────┐
+│ PastQues    │──────┤   Notifications  │      │ Calendar    │
+├─────────────┤      ├──────────────────┤      ├─────────────┤
+│ id (PK)     │      │ id (PK)          │      │ id (PK)     │
+│ course_id   │      │ recipient_id (FK)│      │ course_id   │
+│ session     │      │ type             │      │ event_type  │
+│ exam_type   │      │ title            │      │ title       │
+│ file_path   │      │ message          │      │ start_time  │
+│ is_approved │      │ is_read          │      │ end_time    │
+│ tags        │      │ link             │      │ venue       │
+└─────────────┘      │ sent_at         │      └─────────────┘
+                     └──────────────────┘
+
+┌─────────────┐      ┌──────────────────┐
+│ LiveClass   │      │ GPTInteractions  │
+├─────────────┤      ├──────────────────┤
+│ id (PK)     │      │ id (PK)          │
+│ course_id   │      │ user_id (FK)     │
+│ title       │      │ query            │
+│ scheduled_at│      │ response         │
+│ duration    │      │ timestamp        │
+│ recording_url│     │ context_type     │
+│ status      │      │ rating           │
+└─────────────┘      └──────────────────┘
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- 5. USER ROLES & PERMISSIONS MATRIX -->
+  <h2>5. User Roles &amp; Permission Matrix</h2>
+  <table>
+    <thead>
+      <tr><th>Feature</th><th>Student</th><th>Lecturer</th><th>Admin (HOD)</th><th>System Admin</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Dashboard</strong></td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>View Profile</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Edit Profile</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td><strong>Course Management</strong></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Browse Courses</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Register Courses</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Approve Registration</td><td>✗</td><td>✗</td><td>✓</td><td>✗</td></tr>
+      <tr><td>Create Course</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Update Course</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Assign Lecturer</td><td>✗</td><td>✗</td><td>✓</td><td>✓</td></tr>
+      <tr><td><strong>Content Management</strong></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Upload Notes/Slides</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Download Materials</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>View Recordings</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td><strong>Assignments</strong></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Create Assignment</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Submit Assignment</td><td>✓</td><td>✗</td><td>✗</td><td>✗</td></tr>
+      <tr><td>Grade Assignment</td><td>✗</td><td>✓</td><td>✓</td><td>✗</td></tr>
+      <tr><td>View Grades</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td><strong>Assessment</strong></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Create CBT Quiz</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Take CBT Quiz</td><td>✓</td><td>✗</td><td>✗</td><td>✗</td></tr>
+      <tr><td>View Results</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>View Analytics</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td><strong>Past Questions</strong></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Upload</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Approve</td><td>✗</td><td>✗</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Download</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td><strong>AI Assistant</strong></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Ask Questions</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Voice Transcription</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td><strong>Notifications</strong></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Send Broadcast</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Send Personal</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td><strong>Announcements</strong></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Create</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Approve/Publish</td><td>✗</td><td>✗</td><td>✓</td><td>✓</td></tr>
+      <tr><td><strong>System</strong></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>User Management</td><td>✗</td><td>✗</td><td>✗</td><td>✓</td></tr>
+      <tr><td>System Settings</td><td>✗</td><td>✗</td><td>✗</td><td>✓</td></tr>
+      <tr><td>Analytics Dashboard</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>Backup Management</td><td>✗</td><td>✗</td><td>✗</td><td>✓</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- 6. MODULE INTERACTIONS -->
+  <h2>6. Module Interactions Flow Diagram</h2>
+  <div class="diagram-box">
+    ┌─────────────────────────────────────────────────────────────┐
+    │                     USER LOGIN FLOW                         │
+    └───────────────────────┬─────────────────────────────────────┘
+                            ▼
+                    ┌───────────────┐
+                    │   DASHBOARD   │
+                    └───────┬───────┘
+                            │
+        ┌───────────────────┼───────────────────┐
+        │                   │                   │
+        ▼                   ▼                   ▼
+┌───────────────┐ ┌──────────────────┐ ┌──────────────┐
+│   STUDENT     │ │    LECTURER      │ │     ADMIN    │
+│   PORTAL      │ │    PORTAL        │ │    PORTAL    │
+└───────┬───────┘ └────────┬─────────┘ └──────┬───────┘
+        │                  │                  │
+        ▼                  ▼                  ▼
+┌───────────────────────────────────────────────────────────┐
+│                    NAVIGATION MODULES                      │
+├───────────────────────────────────────────────────────────┤
+│                                                           │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐ │
+│  │COURSES   │  │ASSIGNMENT│  │  CBT     │  │ GRADES   │ │
+│  ├──────────┤  ├──────────┤  ├──────────┤  ├──────────┤ │
+│  │PAST      │  │LIVE CLASS│  │ AI       │  │CALENDAR  │ │
+│  │QUESTIONS │  │          │  │ASSISTANT │  │          │ │
+│  ├──────────┤  ├──────────┤  ├──────────┤  ├──────────┤ │
+│  │MATERIALS │  │TIMETABLE │  │OFFLINE   │  │NOTIFIC.  │ │
+│  │          │  │          │  │ACCESS    │  │          │ │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘ │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- 7. TECHNOLOGY STACK -->
+  <h2>7. Technology Stack</h2>
+  <h3>Frontend</h3>
+  <table>
+    <tr><th>Component</th><th>Technology</th><th>Purpose</th></tr>
+    <tr><td>Web App</td><td>React 18 + TypeScript</td><td>Main web interface</td></tr>
+    <tr><td>Mobile App</td><td>React Native (Expo)</td><td>iOS/Android apps</td></tr>
+    <tr><td>UI Library</td><td>Material-UI v5 / Ant Design</td><td>Component library</td></tr>
+    <tr><td>State Management</td><td>Redux Toolkit + RTK Query</td><td>State management</td></tr>
+    <tr><td>Routing</td><td>React Router v6</td><td>Navigation</td></tr>
+    <tr><td>Forms</td><td>React Hook Form + Zod</td><td>Form handling &amp; validation</td></tr>
+    <tr><td>Calendar</td><td>FullCalendar</td><td>Interactive calendar</td></tr>
+    <tr><td>Charts</td><td>Recharts / Chart.js</td><td>Data visualization</td></tr>
+    <tr><td>Media Player</td><td>HLS.js / Video.js</td><td>Video playback</td></tr>
+    <tr><td>PDF Viewer</td><td>react-pdf</td><td>PDF preview</td></tr>
+  </table>
+  <h3>Backend</h3>
+  <table>
+    <tr><th>Component</th><th>Technology</th><th>Purpose</th></tr>
+    <tr><td>API</td><td>Node.js + Express / NestJS</td><td>RESTful APIs</td></tr>
+    <tr><td>GraphQL</td><td>Apollo Server</td><td>Flexible queries</td></tr>
+    <tr><td>Auth</td><td>JWT + OAuth2 (Google/Microsoft)</td><td>Authentication</td></tr>
+    <tr><td>Database</td><td>PostgreSQL</td><td>Main relational DB</td></tr>
+    <tr><td>Search</td><td>Elasticsearch</td><td>Content search</td></tr>
+    <tr><td>Cache</td><td>Redis</td><td>Session cache</td></tr>
+    <tr><td>File Storage</td><td>AWS S3 / Cloudinary</td><td>Content storage</td></tr>
+    <tr><td>Queue</td><td>Bull (Redis)</td><td>Background jobs</td></tr>
+    <tr><td>WebSocket</td><td>Socket.io</td><td>Real-time features</td></tr>
+    <tr><td>CI/CD</td><td>GitHub Actions / Jenkins</td><td>Deployment</td></tr>
+  </table>
+  <h3>AI/ML Services</h3>
+  <table>
+    <tr><th>Service</th><th>Technology</th><th>Purpose</th></tr>
+    <tr><td>AI Assistant</td><td>OpenAI GPT-4 / Claude</td><td>Chatbot &amp; QA</td></tr>
+    <tr><td>Voice-to-Text</td><td>AssemblyAI / Whisper</td><td>Lecture transcription</td></tr>
+    <tr><td>Plagiarism</td><td>Turnitin API / MOSS</td><td>Code &amp; text checking</td></tr>
+    <tr><td>Recommendations</td><td>Custom ML model</td><td>Course suggestions</td></tr>
+    <tr><td>Content Tagging</td><td>NLP</td><td>Auto-tagging documents</td></tr>
+  </table>
+  <h3>DevOps &amp; Infrastructure</h3>
+  <table>
+    <tr><th>Service</th><th>Technology</th><th>Purpose</th></tr>
+    <tr><td>Cloud</td><td>AWS / Google Cloud</td><td>Hosting</td></tr>
+    <tr><td>Container</td><td>Docker / Kubernetes</td><td>Orchestration</td></tr>
+    <tr><td>Monitoring</td><td>Prometheus + Grafana</td><td>Monitoring</td></tr>
+    <tr><td>Logging</td><td>ELK Stack</td><td>Log management</td></tr>
+    <tr><td>CDN</td><td>CloudFront / Cloudflare</td><td>Content delivery</td></tr>
+    <tr><td>Database</td><td>RDS / Cloud SQL</td><td>Managed database</td></tr>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- 8. DATA IMPORT SPECIFICATIONS -->
+  <h2>8. Data Import Specifications</h2>
+  <h3>Initial Data to Import</h3>
+  <h4>1. User Data (CSV/JSON)</h4>
+  <div class="code-block">
+{
+  "users": [
+    {
+      "id": "u001",
+      "fullName": "Dr. Adeola Ogunleye",
+      "email": "a.ogunleye@university.edu",
+      "role": "lecturer",
+      "department": "Computer Science",
+      "employeeId": "LEC-2024-001"
+    },
+    {
+      "id": "u002",
+      "fullName": "Emeka Okafor",
+      "email": "e.okafor@university.edu",
+      "role": "student",
+      "department": "Computer Science",
+      "level": 300,
+      "matricNo": "CS/2021/001"
+    }
+  ]
+}
+  </div>
+  <h4>2. Course Data (CSV/JSON)</h4>
+  <div class="code-block">
+{
+  "courses": [
+    {
+      "courseCode": "CSC301",
+      "title": "Data Structures & Algorithms",
+      "credits": 3,
+      "level": 300,
+      "semester": "First",
+      "lecturerId": "u001",
+      "description": "Advanced data structures...",
+      "prerequisites": ["CSC201"],
+      "maxCapacity": 120
+    }
+  ]
+}
+  </div>
+  <h4>3. Session &amp; Semester Data</h4>
+  <div class="code-block">
+{
+  "sessions": [
+    {
+      "year": "2024/2025",
+      "semesters": [
+        {
+          "name": "First Semester",
+          "startDate": "2024-09-15",
+          "endDate": "2024-12-20",
+          "registrationDeadline": "2024-09-30"
+        },
+        {
+          "name": "Second Semester",
+          "startDate": "2025-01-20",
+          "endDate": "2025-05-15",
+          "registrationDeadline": "2025-02-05"
+        }
+      ]
+    }
+  ]
+}
+  </div>
+  <h4>4. Past Questions (Bulk PDFs with metadata)</h4>
+  <div class="code-block">
+Course Code,Session,Exam Type,File Name,Tags
+CSC301,2023/2024 First,Final,csc301_final_2023.pdf,"algorithms,data structures"
+CSC101,2023/2024 Second,Midterm,csc101_midterm_2024.pdf,"programming,basics"
+  </div>
+  <h4>5. Course Registration Data (Historical)</h4>
+  <div class="code-block">
+Student Matric, Course Code, Session, Semester, Grade, Semester GPA
+CS/2021/001, CSC301, 2023/2024, First, B+, 3.25
+CS/2021/001, CSC302, 2023/2024, First, A, 3.50
+  </div>
+  <h4>6. Academic Calendar Events</h4>
+  <div class="code-block">
+Date,Title,Type,Description,Link
+2024-09-15,Resumption,Academic,First Semester begins,
+2024-10-10,Matriculation,Ceremony,New students orientation,
+2024-11-20,Midterm Break,Break,One week break,
+2024-12-20,Exams Begin,Exam,First semester exams start,
+  </div>
+  <h4>7. Faculty &amp; Department Structure</h4>
+  <div class="code-block">
+{
+  "departments": [
+    {
+      "id": "dept_cs",
+      "name": "Computer Science",
+      "hodId": "u003",
+      "faculty": "Faculty of Science",
+      "programs": ["BSc Computer Science", "BSc Software Engineering"]
+    }
+  ]
+}
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- 9. KEY FEATURES DEEP-DIVE -->
+  <h2>9. Key Features Deep-Dive</h2>
+  <h3>9.1 AI Student Assistant</h3>
+  <ul>
+    <li><strong>24/7 Availability</strong> for student queries</li>
+    <li><strong>Context-Aware Responses:</strong> Course-specific (trained on course materials), Departmental (policy, procedures), General academic guidance</li>
+    <li><strong>Capabilities:</strong> Clarify assignment instructions, Explain concepts from lecture notes, Recommend study resources, Provide practice questions, Schedule reminders</li>
+    <li><strong>Integration:</strong> Search through uploaded lecture notes, Access past questions for practice, Reference course syllabus</li>
+  </ul>
+  <h3>9.2 Voice-to-Text Lecture Transcription</h3>
+  <ul>
+    <li><strong>Real-time Transcription</strong> during live lectures</li>
+    <li><strong>Speaker Diarization</strong> (identifies different speakers)</li>
+    <li><strong>Automatic Summarization</strong></li>
+    <li><strong>Searchable Transcripts</strong></li>
+    <li><strong>Export to Notes</strong> (Markdown/PDF)</li>
+    <li><strong>Multi-language Support</strong></li>
+    <li><strong>Integration with Lecture Recordings</strong></li>
+  </ul>
+  <h3>9.3 Offline Access</h3>
+  <ul>
+    <li><strong>Downloaded Materials:</strong> Lecture notes (PDF, DOCX), Video recordings (with subtitles), Past questions, Quizzes (take offline, sync later)</li>
+    <li><strong>Sync Engine:</strong> Auto-sync when online, Conflict resolution for submissions, Progress tracking across devices</li>
+    <li><strong>Storage Management:</strong> Selective download, Auto-cleanup for older materials, Quality selection (low/med/high for videos)</li>
+  </ul>
+
+  <div class="page-break"></div>
+
+  <!-- 10. MVP PRIORITY MATRIX -->
+  <h2>10. MVP Feature Priority Matrix</h2>
+  <table>
+    <thead>
+      <tr><th>Priority</th><th>Feature</th><th>Complexity</th><th>Impact</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>P0</strong></td><td>User Authentication &amp; Profile</td><td>High</td><td>Critical</td></tr>
+      <tr><td><strong>P0</strong></td><td>Dashboard with Stats</td><td>Medium</td><td>High</td></tr>
+      <tr><td><strong>P0</strong></td><td>Course Catalog &amp; Registration</td><td>High</td><td>High</td></tr>
+      <tr><td><strong>P0</strong></td><td>Note Download/View</td><td>Medium</td><td>High</td></tr>
+      <tr><td><strong>P1</strong></td><td>Timetable &amp; Calendar</td><td>Medium</td><td>High</td></tr>
+      <tr><td><strong>P1</strong></td><td>Assignment Submission</td><td>High</td><td>High</td></tr>
+      <tr><td><strong>P1</strong></td><td>CBT Practice Questions</td><td>High</td><td>High</td></tr>
+      <tr><td><strong>P1</strong></td><td>Grade Viewer &amp; CGPA Calculator</td><td>Medium</td><td>High</td></tr>
+      <tr><td><strong>P2</strong></td><td>Past Questions Bank</td><td>Medium</td><td>Medium</td></tr>
+      <tr><td><strong>P2</strong></td><td>Live Classes &amp; Recordings</td><td>High</td><td>Medium</td></tr>
+      <tr><td><strong>P2</strong></td><td>Notifications</td><td>Medium</td><td>Medium</td></tr>
+      <tr><td><strong>P3</strong></td><td>AI Assistant</td><td>Very High</td><td>Medium</td></tr>
+      <tr><td><strong>P3</strong></td><td>Voice-to-Text</td><td>High</td><td>Medium</td></tr>
+      <tr><td><strong>P4</strong></td><td>Offline Access</td><td>High</td><td>Low</td></tr>
+      <tr><td><strong>P4</strong></td><td>Plagiarism Checker</td><td>High</td><td>Low</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- 11. MONETIZATION (Optional) -->
+  <h2>11. Monetization Strategy (Optional B2B2C Model)</h2>
+  <p><strong>Revenue Streams:</strong></p>
+  <ul>
+    <li><strong>Institutional Licensing</strong> (Universities/Departments)</li>
+    <li><strong>Freemium Model:</strong> Free (basic features), Premium (AI Assistant, Advanced analytics)</li>
+    <li><strong>Marketplace:</strong> Sponsored content/ads</li>
+  </ul>
+
+  <div class="page-break"></div>
+
+  <!-- 12. DEVELOPMENT ROADMAP -->
+  <h2>12. Development Roadmap</h2>
+  <h3>Phase 1: Foundation (Weeks 1-4)</h3>
+  <ul>
+    <li>Project setup &amp; architecture</li>
+    <li>Database schema design</li>
+    <li>Authentication system</li>
+    <li>User profiles &amp; roles</li>
+    <li>Core API endpoints</li>
+  </ul>
+  <h3>Phase 2: Core Features (Weeks 5-10)</h3>
+  <ul>
+    <li>Course management module</li>
+    <li>Material upload/download</li>
+    <li>Assignment system</li>
+    <li>Basic CBT engine</li>
+    <li>Grade management</li>
+  </ul>
+  <h3>Phase 3: Collaboration (Weeks 11-15)</h3>
+  <ul>
+    <li>Calendar &amp; timetables</li>
+    <li>Notifications system</li>
+    <li>Live classes integration</li>
+    <li>Past questions bank</li>
+    <li>Search functionality</li>
+  </ul>
+  <h3>Phase 4: AI &amp; Advanced (Weeks 16-20)</h3>
+  <ul>
+    <li>AI Assistant integration</li>
+    <li>Voice-to-text transcription</li>
+    <li>Analytics dashboard</li>
+    <li>Mobile app beta</li>
+  </ul>
+  <h3>Phase 5: Polish &amp; Scale (Weeks 21-24)</h3>
+  <ul>
+    <li>Performance optimization</li>
+    <li>Offline access</li>
+    <li>Security audit</li>
+    <li>Production deployment</li>
+  </ul>
+
+  <div class="page-break"></div>
+
+  <!-- 13. TEAM STRUCTURE -->
+  <h2>13. Team Structure</h2>
+  <table>
+    <thead><tr><th>Role</th><th>Responsibilities</th><th>Count</th></tr></thead>
+    <tbody>
+      <tr><td>Product Manager</td><td>Vision, roadmap, stakeholder management</td><td>1</td></tr>
+      <tr><td>Tech Lead</td><td>Architecture, tech decisions, code review</td><td>1</td></tr>
+      <tr><td>Full Stack Developers</td><td>Frontend + Backend development</td><td>3-4</td></tr>
+      <tr><td>UI/UX Designer</td><td>Design system, prototypes, user research</td><td>1</td></tr>
+      <tr><td>DevOps Engineer</td><td>CI/CD, hosting, monitoring</td><td>1</td></tr>
+      <tr><td>AI/ML Engineer</td><td>AI assistant, NLP, transcription</td><td>1</td></tr>
+      <tr><td>QA Engineer</td><td>Testing, automation, quality</td><td>1</td></tr>
+      <tr><td>Data Analyst</td><td>Analytics, reporting, insights</td><td>1</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- 14. KEY SUCCESS METRICS -->
+  <h2>14. Key Success Metrics (KPIs)</h2>
+  <p><strong>User Adoption:</strong> Daily Active Users (DAU), Student registration rate, Lecturer engagement rate</p>
+  <p><strong>Academic Impact:</strong> Average semester GPA improvement, Assignment submission rate, Content usage (views/downloads)</p>
+  <p><strong>Platform Performance:</strong> Page load time (&lt;2s), API response time (&lt;200ms), Uptime (99.9%)</p>
+  <p><strong>User Satisfaction:</strong> Net Promoter Score (NPS), Feature usage rate, Support ticket volume</p>
+
+  <div class="page-break"></div>
+
+  <!-- 15. RISK ASSESSMENT -->
+  <h2>15. Risk Assessment</h2>
+  <table>
+    <thead><tr><th>Risk</th><th>Probability</th><th>Impact</th><th>Mitigation</th></tr></thead>
+    <tbody>
+      <tr><td>Data privacy breach</td><td>Low</td><td>Critical</td><td>Encryption, regular audits, GDPR compliance</td></tr>
+      <tr><td>User adoption resistance</td><td>Medium</td><td>High</td><td>User training, stakeholder engagement, pilot program</td></tr>
+      <tr><td>Technical debt</td><td>Medium</td><td>Medium</td><td>Regular refactoring, code reviews, testing</td></tr>
+      <tr><td>Integration failures</td><td>Low</td><td>High</td><td>Thorough testing, fallback mechanisms</td></tr>
+      <tr><td>Content quality issues</td><td>Medium</td><td>Medium</td><td>Content moderation, approval workflows</td></tr>
+      <tr><td>Scalability issues</td><td>Low</td><td>High</td><td>Performance testing, auto-scaling architecture</td></tr>
+      <tr><td>Vendor lock-in</td><td>Medium</td><td>Low</td><td>Open standards, multi-cloud strategy</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- 16. COMPLIANCE & SECURITY -->
+  <h2>16. Compliance &amp; Security</h2>
+  <ul>
+    <li><strong>Data Protection:</strong> GDPR compliance, student data privacy</li>
+    <li><strong>Access Control:</strong> RBAC (Role-Based Access Control)</li>
+    <li><strong>Data Encryption:</strong> AES-256 (at rest), TLS 1.3 (in transit)</li>
+    <li><strong>Backup Strategy:</strong> Daily automated backups, 30-day retention</li>
+    <li><strong>Audit Logging:</strong> All user actions logged</li>
+    <li><strong>SSO Integration:</strong> University authentication systems</li>
+  </ul>
+
+  <div class="page-break"></div>
+
+  <!-- 17. UI WIREFRAME SKETCHES -->
+  <h2>17. UI Wireframe Sketches</h2>
+  <h3>Dashboard View</h3>
+  <div class="diagram-box">
+┌─────────────────────────────────────────────────────────────────┐
+│  ☰ CS Hub    🔍 Search...            🔔 (3)   👤 John Doe    │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐          │
+│  │ 📊 CGPA: 3.45 │ │ 📝 Deadlines │ │ 💬 Messages  │          │
+│  │   ▲ +0.15    │ │ 3 upcoming   │ │ 2 unread     │          │
+│  └──────────────┘ └──────────────┘ └──────────────┘          │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────┐          │
+│  │  📅 Calendar Widget                             │          │
+│  │  Mon  Tue  Wed  Thu  Fri                       │          │
+│  │  ██   ██   ██   ██   ██                       │          │
+│  │  Today: CSC301 - 10:00 AM                      │          │
+│  └─────────────────────────────────────────────────┘          │
+│                                                                 │
+│  📢 Announcements                                              │
+│  ┌─────────────────────────────────────────────────┐          │
+│  │  ⚠️ HOD: Departmental meeting tomorrow 2PM    │          │
+│  │  📝 Dr. Ogun: Assignment deadline extended    │          │
+│  └─────────────────────────────────────────────────┘          │
+│                                                                 │
+│  Quick Actions: [📚 Courses] [📝 Assignment] [🤖 AI] [📊 GPA]│
+├─────────────────────────────────────────────────────────────────┤
+│  Footer: © CS Hub 2026 | Privacy | Terms | Help               │
+└─────────────────────────────────────────────────────────────────┘
+  </div>
+  <h3>Course Management View</h3>
+  <div class="diagram-box">
+┌─────────────────────────────────────────────────────────────────┐
+│  ← Dashboard  /  My Courses                                     │
+├─────────────────────────────────────────────────────────────────┤
+│  Session: 2024/2025 - First Semester                           │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────┐          │
+│  │  📚 My Registered Courses (4)                   │          │
+│  │  ┌─────────────────────────────────────────┐    │          │
+│  │  │ CSC301  │ Data Structures & Algo        │ A  │          │
+│  │  │         │ Dr. Ogunleye                  │    │          │
+│  │  │ Progress: ████████░░ 80%               │    │          │
+│  │  └─────────────────────────────────────────┘    │          │
+│  │  ┌─────────────────────────────────────────┐    │          │
+│  │  │ CSC302  │ Database Systems              │ B+ │          │
+│  │  │         │ Dr. Adebayo                  │    │          │
+│  │  │ Progress: ██████░░░░ 60%               │    │          │
+│  │  └─────────────────────────────────────────┘    │          │
+│  │  ┌─────────────────────────────────────────┐    │          │
+│  │  │ CSC310  │ Software Engineering          │ B  │          │
+│  │  │         │ Prof. Johnson                │    │          │
+│  │  │ Progress: ████░░░░░░ 40%               │    │          │
+│  │  └─────────────────────────────────────────┘    │          │
+│  └─────────────────────────────────────────────────┘          │
+│                                                                 │
+│  [Register for Courses] [View Timetable]                       │
+├─────────────────────────────────────────────────────────────────┤
+│  Footer: © CS Hub 2026                                          │
+└─────────────────────────────────────────────────────────────────┘
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- 18. FINAL DELIVERABLES CHECKLIST -->
+  <h2>18. Final Deliverables Checklist</h2>
+  <ul>
+    <li>✅ Project Overview &amp; Vision</li>
+    <li>✅ Detailed Feature Specifications</li>
+    <li>✅ System Architecture Diagram</li>
+    <li>✅ Entity Relationship Diagram (ERD)</li>
+    <li>✅ User Roles &amp; Permissions Matrix</li>
+    <li>✅ Module Interactions Flow</li>
+    <li>✅ Technology Stack List</li>
+    <li>✅ Data Import Specifications</li>
+    <li>✅ AI &amp; Advanced Features Deep-Dive</li>
+    <li>✅ MVP Priority Matrix</li>
+    <li>✅ Development Roadmap</li>
+    <li>✅ Team Structure</li>
+    <li>✅ KPI &amp; Success Metrics</li>
+    <li>✅ Risk Assessment</li>
+    <li>✅ Compliance &amp; Security</li>
+    <li>✅ UI Wireframe Sketches</li>
+  </ul>
+
+  <h2>Next Steps for the Team:</h2>
+  <ol>
+    <li><strong>Product Owner:</strong> Finalize feature prioritization and gather stakeholder feedback</li>
+    <li><strong>Tech Lead:</strong> Finalize technology decisions and architecture review</li>
+    <li><strong>Designers:</strong> Create high-fidelity UI mockups and design system</li>
+    <li><strong>Developers:</strong> Set up development environment and start Phase 1 sprint planning</li>
+    <li><strong>QA:</strong> Prepare test strategy and test cases</li>
+    <li><strong>DevOps:</strong> Provision development and staging environments</li>
+  </ol>
+  <p style="margin-top:30px; color:#64748b; font-style:italic;">This document serves as the foundational specification for the CS Hub project. All team members should familiarize themselves with this document to ensure alignment on vision, features, and technical implementation.</p>
+
+  <!-- END -->
+</div>
+</body>
+</html>
